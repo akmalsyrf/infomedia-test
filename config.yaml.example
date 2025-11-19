@@ -1,0 +1,29 @@
+# Server Configuration
+SERVER_PORT: "8080"
+
+# Database Configuration
+# Options: "postgres" or "sqlite"
+DATABASE_TYPE: "sqlite"
+# For SQLite (development):
+DATABASE_DSN: "file:test.db?cache=shared&mode=memory"
+# For PostgreSQL (production):
+# DATABASE_DSN: "postgres://user:password@localhost/dbname?sslmode=disable"
+
+# JWT Configuration
+JWT_SECRET: "change-this-secret-key-in-production"
+JWT_ACCESS_TOKEN_EXPIRY: 15  # minutes
+JWT_REFRESH_TOKEN_EXPIRY: 7   # days
+JWT_REFRESH_TOKEN_ROTATION: true
+
+# Password Configuration
+PASSWORD_MIN_LENGTH: 8
+
+# Email Configuration (Optional)
+EMAIL_ENABLED: false
+EMAIL_SMTP_HOST: "smtp.gmail.com"
+EMAIL_SMTP_PORT: 587
+EMAIL_SMTP_USERNAME: "your-email@gmail.com"
+EMAIL_SMTP_PASSWORD: "your-app-password"
+EMAIL_FROM_ADDRESS: "your-email@gmail.com"
+EMAIL_FROM_NAME: "Boilerplate API"
+

@@ -1,0 +1,38 @@
+post:
+  operationId: V1_Auth_Refresh_Post
+  summary: Refresh access token
+  description: |-
+    Refresh access token using refresh token.
+    
+    If refresh token rotation is enabled, a new refresh token will be returned.
+    - operationId: `V1_Auth_Refresh_Post`
+  requestBody:
+    description: Refresh token payload
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/V1_Auth_Refresh_Post_Request.yml
+  responses:
+    '200':
+      description: Token refreshed successfully
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/V1_Auth_Refresh_Post_200Response.yml
+    '401':
+      description: Unauthorized - Invalid or expired refresh token
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/Error401Response.yml
+    '400':
+      description: Bad Request - Validation error
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/Error400Response.yml
+  tags:
+    - auth
+  x-codegen-request-body-name: data
+

@@ -1,0 +1,37 @@
+type: object
+properties:
+  access_token:
+    type: string
+    description: JWT access token (expires in 15 minutes)
+    example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+  access_token_expires_at:
+    type: string
+    format: date-time
+    description: Access token expiration time
+    example: "2025-11-19T15:30:00Z"
+  refresh_token:
+    type: string
+    description: Refresh token (expires in 7 days)
+    example: "550e8400-e29b-41d4-a716-446655440000-550e8400-e29b-41d4-a716-446655440001"
+  user:
+    type: object
+    properties:
+      id:
+        type: string
+        format: uuid
+        description: User ID
+        example: "550e8400-e29b-41d4-a716-446655440000"
+      email:
+        type: string
+        format: email
+        description: User email
+        example: "user@example.com"
+    required:
+      - id
+      - email
+required:
+  - access_token
+  - access_token_expires_at
+  - refresh_token
+  - user
+

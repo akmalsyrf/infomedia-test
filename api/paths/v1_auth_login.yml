@@ -1,0 +1,38 @@
+post:
+  operationId: V1_Auth_Login_Post
+  summary: Login user
+  description: |-
+    Authenticate user with email and password.
+    
+    Returns access token (15 minutes expiry) and refresh token (7 days expiry).
+    - operationId: `V1_Auth_Login_Post`
+  requestBody:
+    description: Login payload
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/V1_Auth_Login_Post_Request.yml
+  responses:
+    '200':
+      description: Login successful
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/V1_Auth_Login_Post_200Response.yml
+    '401':
+      description: Unauthorized - Invalid credentials
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/Error401Response.yml
+    '400':
+      description: Bad Request - Validation error
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/Error400Response.yml
+  tags:
+    - auth
+  x-codegen-request-body-name: data
+

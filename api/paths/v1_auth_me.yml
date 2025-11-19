@@ -1,0 +1,29 @@
+get:
+  operationId: V1_Auth_Me_Get
+  summary: Get user information
+  description: |-
+    Get the current user's information.
+    
+    - operationId: `V1_Auth_Me_Get`
+  requestBody:
+    description: User information payload
+    required: false
+  responses:
+    '200':
+      description: User information retrieved successfully
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/V1_Auth_Me_Get_200Response.yml
+    '401':
+      description: Unauthorized - Invalid token
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/Error401Response.yml
+  security:
+    - BearerAuth: []
+  tags:
+    - auth
+  x-codegen-request-body-name: data
+

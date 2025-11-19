@@ -1,0 +1,9 @@
+type: object
+properties:
+  error:
+    type: string
+    description: Error message
+    example: "unauthorized"
+required:
+  - error
+

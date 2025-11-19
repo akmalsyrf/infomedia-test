@@ -1,0 +1,20 @@
+type: object
+properties:
+  email:
+    type: string
+    format: email
+    description: User email address
+    example: "user@example.com"
+    x-oapi-codegen-extra-tags:
+      binding: required,email
+  password:
+    type: string
+    format: password
+    description: User password
+    example: "password123"
+    x-oapi-codegen-extra-tags:
+      binding: required
+required:
+  - email
+  - password
+

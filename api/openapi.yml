@@ -1,0 +1,33 @@
+openapi: 3.0.1
+info:
+  title: Boilerplate API
+  version: 1.0.0
+  description: |-
+    - Note: When integrating with API, please read the field descriptions on each endpoint
+servers:
+  - url: http://localhost:8080
+    description: Local development server
+  - url: https://api.example.com
+    description: Production server
+tags:
+  - name: auth
+    x-displayName: Authentication
+    description: Authentication endpoints for user registration, login, and token management
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+paths:
+  /api/v1/register:
+    $ref: paths/v1_auth_register.yml
+  /api/v1/login:
+    $ref: paths/v1_auth_login.yml
+  /api/v1/refresh:
+    $ref: paths/v1_auth_refresh.yml
+  /api/v1/change-password:
+    $ref: paths/v1_auth_change-password.yml
+  /api/v1/me:
+    $ref: paths/v1_auth_me.yml
+

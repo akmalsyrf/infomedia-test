@@ -1,0 +1,53 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:15-alpine
+    container_name: boilerplate-postgres
+    environment:
+      POSTGRES_USER: boilerplate
+      POSTGRES_PASSWORD: boilerplate_password
+      POSTGRES_DB: boilerplate_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U boilerplate"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - boilerplate-network
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: boilerplate-app
+    ports:
+      - "8080:8080"
+    environment:
+      SERVER_PORT: "8080"
+      DATABASE_TYPE: "postgres"
+      DATABASE_DSN: "postgres://boilerplate:boilerplate_password@postgres:5432/boilerplate_db?sslmode=disable"
+      JWT_SECRET: "change-this-secret-key-in-production-use-strong-random-string"
+      JWT_ACCESS_TOKEN_EXPIRY: 15
+      JWT_REFRESH_TOKEN_EXPIRY: 7
+      JWT_REFRESH_TOKEN_ROTATION: "true"
+      PASSWORD_MIN_LENGTH: 8
+      EMAIL_ENABLED: "false"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - boilerplate-network
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
+
+networks:
+  boilerplate-network:
+    driver: bridge
+

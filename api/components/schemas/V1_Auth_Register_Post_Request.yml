@@ -1,0 +1,21 @@
+type: object
+properties:
+  email:
+    type: string
+    format: email
+    description: User email address
+    example: "user@example.com"
+    x-oapi-codegen-extra-tags:
+      binding: required,email
+  password:
+    type: string
+    format: password
+    description: User password (minimum 8 characters)
+    minLength: 8
+    example: "password123"
+    x-oapi-codegen-extra-tags:
+      binding: required,min=8
+required:
+  - email
+  - password
+
